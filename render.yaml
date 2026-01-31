@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: hunter-ai-backend
+    env: java
+    buildCommand: mvn clean package -DskipTests
+    startCommand: java -jar target/hunter-ai-backend-1.0.0.jar
+    envVars:
+      - key: JAVA_VERSION
+        value: 17
+      - key: SPRING_PROFILES_ACTIVE
+        value: production
+      - key: SERVER_PORT
+        value: 10000
+      - key: SPRING_R2DBC_URL
+        sync: false  # Set this in Render dashboard
+      - key: SPRING_R2DBC_USERNAME
+        sync: false
+      - key: SPRING_R2DBC_PASSWORD
+        sync: false
+
