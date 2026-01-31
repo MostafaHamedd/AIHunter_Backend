@@ -3,14 +3,14 @@ package com.hunterai.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.filter.CorsFilter;
+import org.springframework.web.cors.reactive.CorsWebFilter;
+import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 
 @Configuration
 public class CorsConfig {
     
     @Bean
-    public CorsFilter corsFilter() {
+    public CorsWebFilter corsWebFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         
@@ -24,7 +24,6 @@ public class CorsConfig {
         config.addAllowedMethod("OPTIONS");
         
         source.registerCorsConfiguration("/**", config);
-        return new CorsFilter(source);
+        return new CorsWebFilter(source);
     }
 }
-
